@@ -1,0 +1,30 @@
+"YOU ARE IN <%= current_user.t_zone.zone%>&nbspZONE"&nbsp&nbsp&nbsp(<%= link_to 'Edit Profile', :controller=> "users", :action =>"edit", :id=>@current_user.id %>)
+<center><%=link_to 'Sign Out!!!!',:controller => 'sessions', :action => 'destroy'%> </center></br>
+
+ <table border="2">
+ 
+ <tr><th>Title</th>
+         <th>Posted By</th>
+	 <th></th>
+	   
+  </tr>
+ 
+<% @post.each do |post| %>
+  
+	 
+<tr>
+    <td><%= post.title %></td>
+    <td><% p= post.user_id   %><%pp = User.find(p)%><%= pp.firstname%></td>
+    <td><%=  link_to "show post ",:controller=>"post", :action=>"show", :id=>post.id%></td>
+</tr>
+    
+  
+ 
+<% end %>
+
+</table>
+ 
+<br />
+ 
+<%= link_to 'New post', :controller=> "post", :action =>"new" %></br>
+

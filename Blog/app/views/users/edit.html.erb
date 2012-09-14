@@ -1,0 +1,27 @@
+<h1>Edit user</h1>
+<% @user.password = @user.password_confirmation = nil %>
+
+<%= error_messages_for :user %>
+<% form_for @user, :url => { :action => "update", :id => @user.id} do |f| %>
+<p><%= f.label :Username %><br/>
+<%= f.text_field :login %></p>
+
+<p><%= f.label :email %><br/>
+<%= f.text_field :email %></p>
+
+<p><%= f.label :Firstname %><br/>
+<%= f.text_field :firstname %></p>
+
+<p><%= f.label :Lastname %><br/>
+<%= f.text_field :lastname %></p>
+
+
+
+<p><%= f.label :password %><br/>
+<%= f.password_field :password %></p>
+
+<p><%= f.label :password_confirmation, 'Confirm Password' %><br/>
+<%= f.password_field :password_confirmation %></p>
+
+<p><%= submit_tag 'Update' %></p>
+<% end -%>

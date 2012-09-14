@@ -1,0 +1,90 @@
+<center><%=link_to 'Sign Out!!!!',:controller => 'sessions', :action => 'destroy'%></center>
+YOU ARE IN <h3><%= current_user.t_zone.zone%></h3>ZONE
+
+
+<table border='1'>
+<tr>
+  <th><h3>Title:</h3></th>
+  <th><h3>POST:</h3></th>
+ 
+  </tr>
+  <tr>
+  <td><%= @post.title %></td>
+  <td>  <%= @post.body %></td>
+  </tr>
+
+</table >
+
+<p>
+<% ptime=@post.created_at %>
+<% cuser=current_user.t_zone.description %>                                                                   
+<%p cuser %>
+<% p ptime %>
+<% h= ptime.in_time_zone(cuser)%>
+
+
+
+<%#=h.inspect%>
+<%= h.strftime("Posted  On %m/%d/%Y")%>
+<%=h.strftime("at %I:%M%p")%>
+       </p>
+      
+       
+ <table border = 1>
+ <tr>
+  <th><h3>Commenter</h3></th>
+  <th><h3>Comment</h3></th>
+  
+</tr>
+<tr>
+<%@c.each do |a|%>
+<td>@<%= a.name%></td>
+<td><%= a.body%></td></tr>
+
+
+<% ct=a.created_at %>
+<% cuser=current_user.t_zone.description %>  
+  
+   <% h=ct.in_time_zone(cuser)%>
+   
+   <td><%= h.strftime("%m/%d/%Y")%>
+  <%=h.strftime("at %I:%M%p")%></td>
+</tr>
+
+<%end%>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+<% form_for @comment, :url => { :action => "ccreate", :id=> @post.id } do |f| %>
+
+<div class="field">
+<b><h3><%=f.label :Commenter %></h3> <br/></b>
+<%=f.text_field :name %>
+</div>
+
+<p>
+
+                  
+<div class="field">
+<h3><%=f.label :Text%></h3> <br/>
+<%=f.text_area :body, :rows=>5%>
+</div>
+
+<div class= "actions">
+<%=f.submit %>
+</div>
+<%end%>
+<h4><%=link_to'BaCk',:controller=>'post',:action=>'index'%>
+<%= link_to 'Edit Profile', :controller=> "users", :action =>"edit", :id=>@current_user.id %></h4>
+
