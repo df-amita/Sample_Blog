@@ -27,7 +27,7 @@ def show
 	
 	p @post.id
 	@comment = Comment.new
-	
+	p "777777777777777777777777777777777777"
 	@c=@post.comments
 	
 	
